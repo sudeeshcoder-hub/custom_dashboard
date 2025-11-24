@@ -2,6 +2,10 @@
 TITLE My Monitoring Project Starter
 CLS
 
+REM RECTIFIED: CRITICAL FIX for "file not found" errors.
+REM Set current directory to the location of this script.
+cd /d "%~dp0"
+
 echo =====================================================
 echo       MY MONITORING PROJECT - AUTOMATED START
 echo =====================================================
