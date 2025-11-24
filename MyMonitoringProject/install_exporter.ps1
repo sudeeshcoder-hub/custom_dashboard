@@ -5,7 +5,8 @@
 # If not found, it downloads the MSI and installs it silently on port 9182.
 
 # --- Configuration ---
-$exporterVersion = "0.25.1"
+# RECTIFIED: Updated version to 0.31.3
+$exporterVersion = "0.31.3"
 $url = "https://github.com/prometheus-community/windows_exporter/releases/download/v$exporterVersion/windows_exporter-$exporterVersion-amd64.msi"
 $outputFile = "$env:TEMP\windows_exporter.msi"
 $listenPort = "9182"
@@ -32,6 +33,7 @@ else {
 
         Write-Host "Installing silently on port $listenPort..."
         # Run the MSI installer silently (/qn) and set the listen port
+        # RECTIFIED: Added specific collectors to ensure consistency with dashboard
         $installArgs = "/i `"$outputFile`" ENABLED_COLLECTORS=cpu,cs,logical_disk,net,os,service,system LISTEN_PORT=$listenPort /qn"
         Start-Process msiexec.exe -ArgumentList $installArgs -Wait -Verb RunAs -ErrorAction Stop
 
